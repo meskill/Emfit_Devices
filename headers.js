@@ -3,9 +3,9 @@
  */
 
 // headers for handshake process
-exports.HEADER1 = new Buffer([0xC2, 0xFB])
-exports.HEADER2 = new Buffer([0xC3, 0xFB])
-exports.HEADER3 = new Buffer([0xC2, 0xFC])
+exports.HEADER1 = new Buffer([0xC2, 0xFB]);
+exports.HEADER2 = new Buffer([0xC3, 0xFB]);
+exports.HEADER3 = new Buffer([0xC2, 0xFC]);
 
 // first byte of any package
 exports.Headers = {
@@ -22,7 +22,7 @@ exports.Headers = {
 	DATA_TO_SERVER: 0xC6,
 	ACKNOWLEDGE_SERVER_MESSAGE: 0x33,
 	NACKNOWLEDGE_SERVER_MESSAGE: 0x73
-}
+};
 
 exports.MessageType = {
 	PING: 0x01,
@@ -35,7 +35,7 @@ exports.MessageType = {
 	SETTINGS_REQUEST: 0x90,
 	SETTINGS_DATA: 0x91,
 	HANDSHAKE_COMPLETE: 0xFE
-}
+};
 
 exports.DataType = {
 	EVENT: 0x01,
@@ -43,4 +43,4 @@ exports.DataType = {
 	SIGNAL_DATA: 0x03,
 	HRV_DATA: 0x04,
 	CALC_DATA_M: 0x05
-}
+};

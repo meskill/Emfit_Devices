@@ -3,7 +3,7 @@
  */
 
 var lib = require('./lib');
-var headers = require('./headers')
+var headers = require('./headers');
 
 module.exports = function () {
 	var handler = {};
@@ -18,6 +18,7 @@ module.exports = function () {
 		lib.read(socket, 4, function (err, message) {
 			if (err) return cb(err);
 			lib.read(socket, message.readUInt16LE(2) + 2, function (err, data) {
+				if (err) return cb(err);
 				switch (message[0]) {
 					case headers.Headers.MESSAGE_TO_DEVICE:
 						switch (message[1]) {
@@ -32,12 +33,12 @@ module.exports = function () {
 							case headers.MessageType.HANDSHAKE_COMPLETE:
 								break;
 						}
-						break
+						break;
 					case headers.Headers.ACKNOWLEDGE_DEVICE_MESSAGE:
 					case headers.Headers.ACKNOWLEDGE_DEVICE_DATA:
 					case headers.Headers.NACKNOWLEDGE_DEVICE_MESSAGE:
 					case headers.Headers.NACKNOWLEDGE_DEVICE_DATA:
-						return cb(null, message)
+						return cb(null, message);
 						break;
 					default:
 						cb('Wrong Header')

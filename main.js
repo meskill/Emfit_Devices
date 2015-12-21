@@ -8,8 +8,8 @@ var tls = require('net');   // just for now only tcp, should be 'tls'
 var crypto = require('crypto');
 var async = require('async');
 var cluster = require('cluster');
-var config = require('./config')
-var headers = require('./headers')
+var config = require('./config');
+var headers = require('./headers');
 var lib = require('./lib');
 var handler = require('./handler')();
 
@@ -42,18 +42,18 @@ function device() {
 					socket.rndB = decrypted.slice(6, 10);
 					var crypted = lib.encrypt(Buffer.concat([headers.HEADER3, socket.rndB, DEVICE_SERIAL, DEVICE_FIRMWARE, DEVICE_HARDWARE]));
 					socket.write(crypted);
-					console.log('checked')
+					console.log('checked');
 					function handle(err, data) {
-						console.log(data)
-						if (err) return cb(err)
+						console.log(data);
+						if (err) return cb(err);
 						return handler.handle(socket, handle)
 					}
 
-					handle(null)
+					handle(null);
 
 					setTimeout(function () {
 						socket.job = setInterval(function () {
-							console.log('write', cluster.worker.id)
+							console.log('write', cluster.worker.id);
 							//socket.write(lib.message(headers.Headers.MESSAGE_TO_SERVER, headers.MessageType.TIME))
 							socket.write(lib.data(headers.Headers.DATA_TO_SERVER, headers.DataType.CALC_DATA, handler.sort_code(), crypto.randomBytes(40)))
 						}, config.REQUEST_INTERVAL)

@@ -12,4 +12,4 @@ module.exports = {
 	PORT: 35120
 	//HOST: 'localhost',
 	//PORT: 8000
-}
+};
